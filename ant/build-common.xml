@@ -343,11 +343,11 @@
     <!-- ================================================================== -->
     <!-- Target: checkstyle -->
     <!-- ================================================================== -->
-	<condition property="checkStyleExcludesIsSet">
-	  <not>
-		<equals arg1="${checkstyle.excludes}" arg2=""/>
-	  </not>
-	</condition>
+    <condition property="checkStyleExcludesIsSet">
+        <not>
+            <equals arg1="${checkstyle.excludes}" arg2=""/>
+        </not>
+    </condition>
     <fileset id="checkStyleFileSet" dir="${basedir}">
         <include name="${src.name}/**/*.java"/>
         <exclude name="${src.name}/${checkstyle.excludes}" if="checkStyleExcludesIsSet"/>
@@ -496,12 +496,13 @@
     <macrodef name="copyComponent">
         <attribute name="dir"/>
         <attribute name="includes"/>
+        <attribute name="toDir" default="${lib}"/>
         <sequential>
             <delete>
-                <fileset dir="${lib}" includes="@{includes}"/>
+                <fileset dir="@{toDir}" includes="@{includes}"/>
             </delete>
-            <copy todir="${lib}">
-                <fileset dir="@{dir}" includes="@{includes}"/>
+            <copy todir="@{toDir}">
+            <fileset dir="@{dir}" includes="@{includes}"/>
             </copy>
         </sequential>
     </macrodef>
